@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VoteSecure | Online Voting Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="VoteSecure home"><span class="brand-mark">V</span> VoteSecure</a>
+    <span class="tag">COLLEGE PROJECT DEMO</span>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">SECURE • SIMPLE • TRANSPARENT</p>
+        <h1>Online Voting System</h1>
+        <p class="sub">A GitHub Pages-compatible demonstration of voter registration, demo OTP verification, voting, and results.</p>
+      </div>
+      <div class="hero-icon" aria-hidden="true">✓</div>
+    </section>
+
+    <div class="notice"><strong>Demo mode:</strong> This static site stores test data in this browser only. OTP is simulated; this is not suitable for real elections or sensitive personal data.</div>
+
+    <nav class="tabs" aria-label="Main navigation">
+      <button class="tab active" data-view="voteView">Vote</button>
+      <button class="tab" data-view="resultsView">Results</button>
+      <button class="tab" data-view="accountView">My account</button>
+    </nav>
+
+    <section id="voteView" class="view">
+      <div class="grid">
+        <article class="panel">
+          <div class="panel-head"><div><p class="eyebrow">STEP 01</p><h2>Voter access</h2></div><span class="pill">Demo OTP</span></div>
+          <form id="registerForm" class="form">
+            <label for="voterName">Full name</label>
+            <input id="voterName" required maxlength="60" placeholder="e.g. Alex Sharma">
+            <label for="voterEmail">Email address</label>
+            <input id="voterEmail" type="email" required maxlength="120" placeholder="you@example.com">
+            <button class="primary" type="submit">Register / Send demo OTP</button>
+          </form>
+          <div id="otpBox" class="otp-box hidden">
+            <p class="small muted">Your demonstration OTP is</p>
+            <div id="otpCode" class="otp-code">------</div>
+            <form id="otpForm" class="form">
+              <label for="otpInput">Enter OTP</label>
+              <input id="otpInput" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required placeholder="6-digit code">
+              <button class="primary" type="submit">Verify OTP</button>
+            </form>
+          </div>
+          <div id="accessStatus" class="status" aria-live="polite">Register with a test name and email to begin.</div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div><p class="eyebrow">STEP 02</p><h2>Choose a candidate</h2></div><span id="voteState" class="pill">Not verified</span></div>
+          <p class="muted">Verify the demo OTP first. Then select one candidate and submit your test vote.</p>
+          <div id="candidateList" class="candidate-list"></div>
+          <button id="castVote" class="primary" disabled>Submit vote</button>
+          <p class="small muted">One vote per registered email in this browser.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="resultsView" class="view hidden">
+      <article class="panel">
+        <div class="panel-head"><div><p class="eyebrow">LIVE DEMO TOTALS</p><h2>Election results</h2></div><button id="refreshResults" class="secondary">Refresh</button></div>
+        <p class="muted">Results update in this browser as test votes are submitted.</p>
+        <div id="resultsList" class="results-list"></div>
+        <p id="totalVotes" class="total-votes"></p>
+      </article>
+    </section>
+
+    <section id="accountView" class="view hidden">
+      <article class="panel">
+        <p class="eyebrow">CURRENT BROWSER SESSION</p><h2>My account</h2>
+        <div id="accountDetails" class="account-details">No verified voter yet.</div>
+        <div class="actions"><button id="logout" class="secondary">Log out</button><button id="resetDemo" class="danger">Reset demo data</button></div>
+        <p class="small muted">Reset clears all test voters and votes stored by this demo in this browser.</p>
+      </article>
+    </section>
+    <footer>VoteSecure · Educational demonstration · Static HTML/CSS/JavaScript</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
